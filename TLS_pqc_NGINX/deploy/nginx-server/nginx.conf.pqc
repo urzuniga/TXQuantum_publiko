@@ -1,0 +1,2 @@
+# Hybrid PQC target state
+ssl_ecdh_curve X25519MLKEM768;

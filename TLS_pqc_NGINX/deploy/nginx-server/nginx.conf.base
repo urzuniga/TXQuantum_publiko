@@ -1,0 +1,2 @@
+# Classical baseline
+ssl_ecdh_curve X25519;

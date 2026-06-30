@@ -1,0 +1,24 @@
+services:
+  nginx-server:
+    build:
+      context: ./nginx-server
+    container_name: reto2-nginx-pqc
+    restart: unless-stopped
+    ports:
+      - "${WEB_PORT:-4443}:443"
+    networks:
+      - reto2net
+
+  validator:
+    build:
+      context: ./validator
+    container_name: reto2-validator
+    restart: "no"
+    depends_on:
+      - nginx-server
+    networks:
+      - reto2net
+
+networks:
+  reto2net:
+    driver: bridge
