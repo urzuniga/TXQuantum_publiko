@@ -1,0 +1,62 @@
+services:
+  ssh-pq-server:
+    build:
+      context: ./ssh-pq-server
+    container_name: ssh-pq-server
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "${SSH_PUBLIC_PORT:-2222}:2222"
+    volumes:
+      - ssh_data:/data
+    networks:
+      - sshlab
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z 127.0.0.1 2222"]
+      interval: 20s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+
+  webshell:
+    build:
+      context: ./webshell
+      dockerfile: Dockerfile
+    container_name: ssh-pq-webshell
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      ssh-pq-server:
+        condition: service_healthy
+    ports:
+      - "${WEB_PORT:-8082}:${TTYD_PORT:-7681}"
+    networks:
+      - sshlab
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z 127.0.0.1 ${TTYD_PORT:-7681}"]
+      interval: 20s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+
+  validator:
+    build:
+      context: ./validator
+    container_name: ssh-pq-validator
+    restart: "no"
+    env_file:
+      - .env
+    depends_on:
+      ssh-pq-server:
+        condition: service_healthy
+    networks:
+      - sshlab
+
+networks:
+  sshlab:
+    driver: bridge
+
+volumes:
+  ssh_data:

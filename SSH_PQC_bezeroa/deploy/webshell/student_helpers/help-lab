@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+cat <<'EOF'
+Useful variables:
+- LAB_HOST
+- LAB_PORT
+- SSH_USER
+- SSH_PASSWORD
+
+Useful commands:
+- ssh -o KexAlgorithms=...
+- sshpass -p "$SSH_PASSWORD" ssh ...
+
+Goal:
+- prove classical KEX fails
+- prove hybrid PQC KEX succeeds
+- retrieve the flag
+EOF

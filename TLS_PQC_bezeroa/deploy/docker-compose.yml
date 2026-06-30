@@ -1,0 +1,27 @@
+
+services:
+  pqc-gateway:
+    build:
+      context: ./pqc-gateway
+    container_name: quantum-gate-pqc
+    restart: unless-stopped
+    networks:
+      - labnet
+    expose:
+      - "4433"
+
+  webshell:
+    build:
+      context: ./webshell
+      dockerfile: Dockerfile.release
+    container_name: quantum-gate-shell
+    restart: unless-stopped
+    ports:
+      - "8080:7681"
+    networks:
+      - labnet
+
+networks:
+  labnet:
+    driver: bridge
+

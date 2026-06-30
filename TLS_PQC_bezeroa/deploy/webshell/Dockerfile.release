@@ -1,0 +1,9 @@
+
+FROM openquantumsafe/oqs-ossl3
+RUN apk update && apk add --no-cache ttyd bash coreutils && adduser -D student
+COPY entrypoint.sh /opt/webshell/entrypoint.sh
+COPY motd.txt /opt/webshell/motd.txt
+COPY student_helpers /opt/webshell/student_helpers
+RUN chmod -R 755 /opt/webshell
+EXPOSE 7681
+ENTRYPOINT ["/opt/webshell/entrypoint.sh"]

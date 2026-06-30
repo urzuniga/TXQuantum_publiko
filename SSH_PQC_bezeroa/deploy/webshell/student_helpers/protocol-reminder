@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+cat <<'EOF'
+SSH reminder:
+- transport negotiation happens before shell access
+- KEX policy can be enforced by the server
+- this challenge is about KexAlgorithms
+EOF

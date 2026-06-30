@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "Gateway: pqc-gateway:4433"

@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "TLS reminder: key exchange != certificate."

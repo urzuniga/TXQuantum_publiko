@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+cat <<EOF
+SSH target : ${LAB_HOST}:${LAB_PORT}
+SSH user   : ${SSH_USER}
+SSH pass   : ${SSH_PASSWORD}
+EOF

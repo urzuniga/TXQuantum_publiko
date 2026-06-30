@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "Help: use openssl, inspect TLS handshake, find certificate info."

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+cat <<'EOF'
+Mission start
+1. Read the briefing and theory.
+2. Prove classical SSH KEX fails.
+3. Prove hybrid PQC SSH KEX succeeds.
+4. Retrieve the flag.
+EOF
